@@ -1,7 +1,7 @@
 WAR HORIZON
 =================
 
-War Horizon was my senior project at Computer Science class. I am now rewriting it from scratch as open source software. It is a turn-based strategy game influenced by Advance Wars for the GBA. It is written entirely in Java so it is cross-platform. 
+War Horizon was my senior project at Computer Science class. I am now rewriting it from scratch as open source software. It is a turn-based strategy game influenced by Advance Wars for the GBA. It is written entirely in Java and it is cross-platform. 
 
 
 Usage
