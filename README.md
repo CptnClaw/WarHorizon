@@ -19,7 +19,7 @@ Have a bug? Please create an issue here on GitHub!
 https://github.com/CptnClaw/WarHorizon/issues
 
 
-AUTHORS
+Authors
 -------
 
 **Eyal Seelig**
