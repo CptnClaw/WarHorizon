@@ -1,6 +1,8 @@
 package core;
 
 
+import graphics.GameWindow;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -11,20 +13,20 @@ public class Game {
 	private JFrame window;
 	
 	// Loop control
-	final int updatesPerSecond = 25;
-	final int skipUpdateNanos = 1000000 / updatesPerSecond;
-	final int maxFrameSkip = 5;
+	final int UPDATES_PER_SECOND = 25;
+	final int SKIP_UPDATES_NANO = 1000000 / UPDATES_PER_SECOND;
+	final int MAX_FRAME_SKIP = 5;
 	
 	public Game()
 	{
+		// Initialize game engine
 		init();
 		
-		// TODO Create a real game window, derived from JFrame
-		window = new JFrame("War Horizon");
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(500, 500);
+		// Create and show window
+		window = new GameWindow();
 		window.setVisible(true);
 		
+		// Start main loop
 		Thread gameLoop = new Thread()
 		{
 			@Override
@@ -68,15 +70,15 @@ public class Game {
 		{
 			// Update at a regular interval
 			numFrameSkip = 0;
-			while (System.nanoTime() > nextUpdateNanos && numFrameSkip <= maxFrameSkip)
+			while (System.nanoTime() > nextUpdateNanos && numFrameSkip <= MAX_FRAME_SKIP)
 			{
 				update();
-				nextUpdateNanos += skipUpdateNanos;
+				nextUpdateNanos += SKIP_UPDATES_NANO;
 				numFrameSkip++;
 			}
 			
 			// Render with interpolation for smoother graphics when FPS exceeds UPS
-			double interpolation = (double)(System.nanoTime() + skipUpdateNanos - nextUpdateNanos) / (double)skipUpdateNanos;
+			double interpolation = (double)(System.nanoTime() + SKIP_UPDATES_NANO - nextUpdateNanos) / (double)SKIP_UPDATES_NANO;
 			render(interpolation);
 		}
 	}
