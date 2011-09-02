@@ -45,7 +45,7 @@ public class Game {
 	
 	private void update()
 	{
-		// TODO Do some real updating
+		// TODO : Do some real updating
 		try 
 		{
 			Thread.sleep(100);
