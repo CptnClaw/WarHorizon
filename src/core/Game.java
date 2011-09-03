@@ -1,29 +1,30 @@
 package core;
 
 
-import graphics.GameWindow;
+import graphics.GameFrame;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class Game {
 	
-	// Game variables
-	private boolean isRunning;
-	private JFrame window;
+	// Receive singleton object
+	public static Game getInstance()
+	{
+		if (game == null)
+		{
+			game = new Game();
+		}
+		return game;
+	}
 	
-	// Loop control
-	final int UPDATES_PER_SECOND = 25;
-	final int SKIP_UPDATES_NANO = 1000000 / UPDATES_PER_SECOND;
-	final int MAX_FRAME_SKIP = 5;
-	
-	public Game()
+	public void start()
 	{
 		// Initialize game engine
 		init();
 		
 		// Create and show window
-		window = new GameWindow();
+		window = new GameFrame();
 		window.setVisible(true);
 		
 		// Start main loop
@@ -36,6 +37,24 @@ public class Game {
 			}
 		};
 		gameLoop.start();
+	}
+	
+	// Singleton object
+	private static Game game = null;
+	
+	// Game variables
+	private boolean isRunning;
+	private JFrame window;
+	
+	// Loop control
+	private final int UPDATES_PER_SECOND = 25;
+	private final int SKIP_UPDATES_NANO = 1000000 / UPDATES_PER_SECOND;
+	private final int MAX_FRAME_SKIP = 5;
+	
+	// Constructor is private - this is a singleton
+	private Game()
+	{
+
 	}
 	
 	private void init()
@@ -86,20 +105,6 @@ public class Game {
 	private void stopGameLoop()
 	{
 		isRunning = false;
-	}
-
-	// Main
-	public static void main(String[] args) 
-	{
-		// Start the game in a different thread than UI
-		SwingUtilities.invokeLater(new Runnable() 
-		{
-	         @Override
-	         public void run() 
-	         {
-	            Game warHorizon = new Game();
-	         }
-		});
 	}
 
 }

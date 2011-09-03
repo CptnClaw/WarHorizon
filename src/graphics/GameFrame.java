@@ -7,35 +7,17 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameWindow extends JFrame 
+public class GameFrame extends JFrame 
 {
 	
-	private final int WINDOW_WIDTH = 800;
-	private final int WINDOW_HEIGHT = 600;
+	private MenuPanel panel;
 	
-	public class GamePanel extends JPanel
-	{
-		public GamePanel()
-		{
-			this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-			this.setBackground(Color.BLUE);
-		}
-		
-		public void paintComponent(Graphics g)
-		{
-			super.paintComponents(g);
-		}
-	}
-	
-	private GamePanel panel;
-	
-	public GameWindow()
+	public GameFrame()
 	{
 		super();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		
-		panel = new GamePanel();
+		panel = new MenuPanel();
 		this.setContentPane(panel);
 		this.pack();
 	}
